@@ -1,0 +1,274 @@
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+
+export function generateInvoicePDF(invoice: any) {
+  const doc = new jsPDF();
+
+  const amount = Number(invoice.amount || 0);
+const tax = Number(invoice.tax || 0);
+const discount = Number(invoice.discount || 0);
+
+const total =
+  Number(invoice.total) ||
+  amount + (amount * tax) / 100 - (amount * discount) / 100;
+
+  // Colors
+  const primary: [number, number, number] = [14, 165, 233];
+const dark: [number, number, number] = [17, 24, 39];
+const gray: [number, number, number] = [107, 114, 128];
+
+  // Background Header
+  doc.setFillColor(primary[0], primary[1], primary[2]);
+  doc.rect(0, 0, 210, 38, "F");
+
+  // Logo / Company
+  doc.setTextColor(255, 255, 255);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(24);
+  doc.text("ClientSphere", 15, 18);
+
+  doc.setFontSize(11);
+  doc.text("AI Freelancer CRM", 15, 28);
+
+  // Invoice Title
+  doc.setFontSize(28);
+  doc.text("INVOICE", 145, 22);
+
+  doc.setTextColor(dark[0], dark[1], dark[2]);
+
+  // Status Badge
+// Status Badge (Top Right)
+doc.setFillColor(240, 249, 255);
+
+// Move it completely to the right
+doc.roundedRect(170, 42, 28, 10, 3, 3, "F");
+
+doc.setFont("helvetica", "bold");
+doc.setFontSize(10);
+doc.setTextColor(14, 165, 233);
+
+// Center the text inside badge
+doc.text(String(invoice.status).toUpperCase(), 184, 49, {
+  align: "center",
+});
+
+doc.setTextColor(dark[0], dark[1], dark[2]);
+
+  let y = 50;
+
+  doc.setFontSize(12);
+
+  doc.text(`Invoice #: ${invoice.invoiceNo}`, 15, y);
+
+  doc.text(
+    `Issue Date: ${new Date(
+      invoice.createdAt
+    ).toLocaleDateString()}`,
+    120,
+    y
+  );
+
+  y += 8;
+
+  doc.text(
+    `Due Date: ${new Date(
+      invoice.dueDate
+    ).toLocaleDateString()}`,
+    120,
+    y
+  );
+
+  y += 18;
+
+  // Bill To Box
+  doc.setFillColor(245, 247, 250);
+  doc.roundedRect(15, y, 180, 38, 3, 3, "F");
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+
+  doc.text("Bill To", 20, y + 10);
+
+  doc.setFont("helvetica", "normal");
+
+  doc.setFontSize(11);
+
+  doc.text(invoice.client.name, 20, y + 20);
+
+  if (invoice.client.company)
+    doc.text(invoice.client.company, 20, y + 27);
+
+  doc.text(invoice.client.email, 20, y + 34);
+
+
+  y += 55;
+
+doc.setFont("helvetica", "bold");
+doc.setFontSize(13);
+
+doc.text("Invoice Summary", 15, y);
+
+y += 10;
+
+doc.setFont("helvetica", "normal");
+
+doc.text(
+  `Subtotal : Rs. ${amount.toLocaleString("en-IN")}`,
+  20,
+  y
+);
+
+y += 8;
+
+doc.text(`Tax : ${invoice.tax}%`, 20, y);
+
+y += 8;
+
+doc.text(`Discount : ${invoice.discount}%`, 20, y);
+
+y += 15;
+
+  autoTable(doc, {
+    startY: y,
+
+    head: [
+      [
+        "Description",
+        "Amount",
+      ],
+    ],
+
+    body: [
+      [
+        invoice.title || "Project Work",
+        `Rs. ${amount.toLocaleString("en-IN")}`,
+      ],
+      [
+        "Tax",
+        `${invoice.tax}%`,
+      ],
+
+      [
+        "Discount",
+        `${invoice.discount}%`,
+      ],
+    ],
+
+    headStyles: {
+      fillColor: [14, 165, 233],
+    },
+
+    styles: {
+      fontSize: 11,
+    },
+  });
+
+  const finalY =
+    (doc as any).lastAutoTable.finalY + 12;
+
+  // ================= TOTAL CARD =================
+
+doc.setFillColor(240, 249, 255);
+
+doc.roundedRect(120, finalY, 75, 32, 3, 3, "F");
+
+doc.setFont("helvetica", "bold");
+doc.setFontSize(12);
+doc.setTextColor(0);
+
+doc.text("TOTAL", 128, finalY + 10);
+
+doc.setFontSize(18);
+doc.setTextColor(primary[0], primary[1], primary[2]);
+
+doc.text(
+  `Rs. ${total.toLocaleString("en-IN")}`,
+  128,
+  finalY + 23
+);
+
+// ================= NOTES =================
+
+let currentY = finalY + 48;
+
+doc.setTextColor(0);
+doc.setFont("helvetica", "bold");
+doc.setFontSize(13);
+
+doc.text("Notes", 15, currentY);
+
+currentY += 8;
+
+doc.setFont("helvetica", "normal");
+doc.setFontSize(11);
+doc.setTextColor(gray[0], gray[1], gray[2]);
+
+const notes =
+  invoice.notes ||
+  "Includes responsive design, contact form, deployment and 30 days of support.";
+
+const wrappedNotes = doc.splitTextToSize(notes, 180);
+
+doc.text(wrappedNotes, 15, currentY);
+
+currentY += wrappedNotes.length * 6 + 12;
+
+// ================= THANK YOU =================
+
+doc.setTextColor(0);
+doc.setFont("helvetica", "bold");
+doc.setFontSize(18);
+
+doc.text("Thank You!", 15, currentY);
+
+currentY += 10;
+
+doc.setFont("helvetica", "normal");
+doc.setFontSize(11);
+
+const thankText =
+  "We appreciate your business and look forward to working with you again.";
+
+const wrappedThank = doc.splitTextToSize(thankText, 180);
+
+doc.text(wrappedThank, 15, currentY);
+
+currentY += wrappedThank.length * 6 + 18;
+
+// ================= SIGNATURE =================
+
+doc.line(135, currentY, 190, currentY);
+
+doc.setFontSize(10);
+doc.setTextColor(gray[0], gray[1], gray[2]);
+
+doc.text("Authorized Signature", 145, currentY + 8);
+
+currentY += 22;
+
+// ================= FOOTER =================
+
+doc.setDrawColor(220);
+
+doc.line(15, currentY, 195, currentY);
+
+currentY += 8;
+
+doc.setFontSize(9);
+
+doc.text(
+  "Generated by ClientSphere • AI Freelancer CRM",
+  15,
+  currentY
+);
+
+doc.text(
+  "www.clientsphere.ai",
+  155,
+  currentY
+);
+
+// ================= SAVE =================
+
+doc.save(`${invoice.invoiceNo}.pdf`);
+}
