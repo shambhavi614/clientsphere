@@ -1,36 +1,225 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 ClientSphere
 
-## Getting Started
+> An AI-powered Freelancer CRM built with Next.js, Prisma, PostgreSQL, and Tailwind CSS.
 
-First, run the development server:
+ClientSphere is a modern CRM platform designed for freelancers, agencies, and startups to manage clients, projects, invoices, notes, and tasks from a single dashboard.
+
+---
+
+## ✨ Features
+
+### 📊 Dashboard
+- Modern analytics dashboard
+- Revenue overview
+- Project summary
+- Client statistics
+- Responsive UI
+
+### 👥 Client Management
+- Add clients
+- Edit client details
+- Delete clients
+- Search clients
+- Company information
+- Contact management
+
+### 📁 Project Management
+- Create projects
+- Track project status
+- Set priorities
+- Assign clients
+- Project timeline
+
+### ✅ Task Management
+- Create tasks
+- Track progress
+- Priority management
+- Task status updates
+
+### 📝 Notes
+- Personal notes
+- Edit/Delete notes
+- Rich note management
+
+### 💳 Invoice Management
+- Generate invoices
+- Invoice status
+- Tax & discount support
+- Due dates
+
+### ⚙ Settings
+- Company profile
+- Currency selection
+- Timezone settings
+- Theme preference
+- Notification preferences
+
+### 🔍 Global Search
+Search instantly across:
+- Clients
+- Projects
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- Next.js 15
+- React
+- TypeScript
+- Tailwind CSS
+- Lucide Icons
+
+## Backend
+
+- Next.js API Routes
+- Prisma ORM
+- PostgreSQL (Neon)
+
+## Authentication
+
+- NextAuth.js
+- Prisma Adapter
+
+---
+
+# 📂 Folder Structure
+
+```
+src/
+│
+├── app/
+│   ├── api/
+│   ├── dashboard/
+│   └── auth/
+│
+├── components/
+│   ├── dashboard/
+│   ├── clients/
+│   ├── projects/
+│   ├── notes/
+│   └── invoices/
+│
+├── lib/
+├── hooks/
+└── utils/
+
+prisma/
+├── schema.prisma
+└── migrations/
+```
+
+---
+
+# ⚡ Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/shambhavi614/clientsphere.git
+```
+
+Move into the project
+
+```bash
+cd clientsphere
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Create a `.env` file
+
+```env
+DATABASE_URL=your_database_url
+
+AUTH_SECRET=your_secret
+
+AUTH_URL=http://localhost:3000
+```
+
+Generate Prisma Client
+
+```bash
+npx prisma generate
+```
+
+Run database migrations
+
+```bash
+npx prisma migrate deploy
+```
+
+Start development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# 📸 Screenshots
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> Add screenshots here
 
-## Learn More
+Dashboard
 
-To learn more about Next.js, take a look at the following resources:
+Clients
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Projects
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Invoices
 
-## Deploy on Vercel
+Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Settings
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+# 🚀 Upcoming Features
+
+- 🔔 Real-time Notifications
+- 📅 Calendar
+- 🤖 AI Assistant
+- 📈 Revenue Analytics
+- 💬 Client Chat
+- 📂 File Uploads
+- 📧 Email Integration
+- 📄 PDF Invoice Export
+- 🌙 Dark / Light Theme
+- 📱 Mobile App
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+Fork the repository and submit a Pull Request.
+
+---
+
+# 📄 License
+
+MIT License
+
+---
+
+# 👩‍💻 Developer
+
+**Shambhavi Jha**
+
+B.Tech CSE (AI)
+
+Frontend Developer | AI Enthusiast
+
+GitHub:
+https://github.com/shambhavi614
+
+---
+
+⭐ If you like this project, don't forget to star the repository!
