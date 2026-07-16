@@ -163,9 +163,6 @@ npm run dev
 ---
 
 # 📸 Screenshots
-
-> Add screenshots here
-
 Dashboard
 <img width="1879" height="915" alt="image" src="https://github.com/user-attachments/assets/76d71108-9aed-4de4-a860-bd8cb61d005b" />
 
