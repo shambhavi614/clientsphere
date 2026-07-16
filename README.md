@@ -167,16 +167,28 @@ npm run dev
 > Add screenshots here
 
 Dashboard
+<img width="1879" height="915" alt="image" src="https://github.com/user-attachments/assets/76d71108-9aed-4de4-a860-bd8cb61d005b" />
+
 
 Clients
+<img width="1885" height="884" alt="image" src="https://github.com/user-attachments/assets/33d1b3bb-a421-40cd-8471-588068233488" />
+
 
 Projects
+<img width="1895" height="904" alt="image" src="https://github.com/user-attachments/assets/26b82520-76a9-48b3-b5a8-ee3a7cd894bd" />
+
 
 Invoices
+<img width="1901" height="911" alt="image" src="https://github.com/user-attachments/assets/24097537-5f1b-4bd0-a60f-c3d5a0d10a43" />
+
 
 Notes
+<img width="1902" height="892" alt="image" src="https://github.com/user-attachments/assets/27a89597-6a79-4526-9286-096181b0c2bd" />
+
 
 Settings
+<img width="1891" height="915" alt="image" src="https://github.com/user-attachments/assets/95acf07b-3ed8-496c-93f0-2a17daed4680" />
+
 
 ---
 
